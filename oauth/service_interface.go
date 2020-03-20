@@ -3,11 +3,9 @@ package oauth
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
-
 	"go-echo-api/config"
 	"go-echo-api/entity"
 	"go-echo-api/session"
-	"go-echo-api/utils/routes"
 )
 
 // ServiceInterface defines exported methods
@@ -17,8 +15,8 @@ type ServiceInterface interface {
 	RestrictToRoles(allowedRoles ...string)
 	IsRoleAllowed(role string) bool
 	FindRoleByID(id string) (*entity.OauthRole, error)
-	GetRoutes() []routes.Route
-	RegisterRoutes(router *echo.Router, prefix string)
+	//GetRoutes() []routes.Route
+	RegisterRoutes(router *echo.Echo, prefix string)
 	ClientExists(clientID string) bool
 	FindClientByClientID(clientID string) (*entity.OauthClient, error)
 	CreateClient(clientID, secret, redirectURI string) (*entity.OauthClient, error)
@@ -37,7 +35,7 @@ type ServiceInterface interface {
 	GetDefaultScope() string
 	ScopeExists(requestedScope string) bool
 	Login(client *entity.OauthClient, user *entity.OauthUser, scope string) (*entity.OauthAccessToken, *entity.OauthRefreshToken, error)
-	GrantAuthorizationCode(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, redirectURI, scope string) (*entity.OauthAuthorizationCode, error)
+	//GrantAuthorizationCode(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, redirectURI, scope string) (*entity.OauthAuthorizationCode, error)
 	GrantAccessToken(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, scope string) (*entity.OauthAccessToken, error)
 	GetOrCreateRefreshToken(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, scope string) (*entity.OauthRefreshToken, error)
 	GetValidRefreshToken(token string, client *entity.OauthClient) (*entity.OauthRefreshToken, error)

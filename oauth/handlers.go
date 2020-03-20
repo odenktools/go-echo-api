@@ -2,6 +2,7 @@ package oauth
 
 import (
 	"errors"
+	"github.com/labstack/echo"
 	"net/http"
 
 	"go-echo-api/entity"
@@ -14,6 +15,10 @@ var (
 	// ErrInvalidClientIDOrSecret ...
 	ErrInvalidClientIDOrSecret = errors.New("Invalid client ID or secret")
 )
+
+func (s *Service) oauthToken(ctx echo.Context) error {
+	return nil
+}
 
 // tokensHandler handles all OAuth 2.0 grant types
 // (POST /v1/oauth/tokens)

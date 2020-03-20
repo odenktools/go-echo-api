@@ -7,12 +7,15 @@ import (
 	"github.com/labstack/gommon/log"
 	authHandler "go-echo-api/auth/delivery/http"
 	authService "go-echo-api/auth/usecase"
+	"go-echo-api/config"
 	"go-echo-api/infrastructure/database"
 	"go-echo-api/infrastructure/validator"
 	jwtMiddleware "go-echo-api/middleware"
+	//"go-echo-api/oauth"
+	"go-echo-api/services"
 	userHandler "go-echo-api/user/delivery/http"
 	userService "go-echo-api/user/usecase"
-	//"go-echo-api/services/services"
+
 	"net/http"
 	"os"
 	"path/filepath"
@@ -26,8 +29,13 @@ func init() {
 	}
 	_ = godotenv.Load(basePath + ".env")
 }
+//var (
+//	// OauthService ...
+//	OauthService oauth.ServiceInterface
+//)
 
 func main() {
+
 	e := echo.New()
 	e.Validator = validator.NewValidator()
 	db := database.New()
@@ -43,6 +51,21 @@ func main() {
 
 	api := e.Group("/api")
 	v1 := api.Group("/v1")
+
+	cnf := config.NewConfig(true, false, "consul")
+	//OauthService = oauth.NewService(cnf, db)
+
+	/*oauth := oauth.NewAuthController()
+	oAuthGrup := v1.Group("/oauth")
+	oAuthGrup.POST("/token", oauth.FindAll)*/
+
+
+	// start the services
+	services.Init(cnf, db)
+	defer services.Close()
+
+	services.OauthService.RegisterRoutes(e, "/v1/oauth")
+
 	//AuthController
 	authController := authHandler.NewAuthController(authService.NewAuthService(db))
 	auth := v1.Group("/auth")
