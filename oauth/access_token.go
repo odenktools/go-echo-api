@@ -1,8 +1,8 @@
 package oauth
 
 import (
-	"time"
 	"go-echo-api/entity"
+	"time"
 )
 
 // GrantAccessToken deletes old tokens and grants a new access token

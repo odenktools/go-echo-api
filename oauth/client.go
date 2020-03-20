@@ -5,11 +5,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/uuid"
+	"github.com/jinzhu/gorm"
+
 	"go-echo-api/entity"
 	"go-echo-api/utils"
 	"go-echo-api/utils/password"
-	"github.com/google/uuid"
-	"github.com/jinzhu/gorm"
 )
 
 var (

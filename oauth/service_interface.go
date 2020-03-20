@@ -1,13 +1,13 @@
 package oauth
 
 import (
-	"go-echo-api/entity"
+	"github.com/jinzhu/gorm"
+	"github.com/labstack/echo"
+
 	"go-echo-api/config"
+	"go-echo-api/entity"
 	"go-echo-api/session"
 	"go-echo-api/utils/routes"
-	"github.com/labstack/echo"
-	"github.com/jinzhu/gorm"
-	"go-oauth2-server/models"
 )
 
 // ServiceInterface defines exported methods
@@ -36,14 +36,14 @@ type ServiceInterface interface {
 	GetScope(requestedScope string) (string, error)
 	GetDefaultScope() string
 	ScopeExists(requestedScope string) bool
-	Login(client *models.OauthClient, user *entity.OauthUser, scope string) (*entity.OauthAccessToken, *entity.OauthRefreshToken, error)
+	Login(client *entity.OauthClient, user *entity.OauthUser, scope string) (*entity.OauthAccessToken, *entity.OauthRefreshToken, error)
 	GrantAuthorizationCode(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, redirectURI, scope string) (*entity.OauthAuthorizationCode, error)
 	GrantAccessToken(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, scope string) (*entity.OauthAccessToken, error)
 	GetOrCreateRefreshToken(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, scope string) (*entity.OauthRefreshToken, error)
 	GetValidRefreshToken(token string, client *entity.OauthClient) (*entity.OauthRefreshToken, error)
 	Authenticate(token string) (*entity.OauthAccessToken, error)
-	NewIntrospectResponseFromAccessToken(accessToken *models.OauthAccessToken) (*IntrospectResponse, error)
-	NewIntrospectResponseFromRefreshToken(refreshToken *models.OauthRefreshToken) (*IntrospectResponse, error)
+	NewIntrospectResponseFromAccessToken(accessToken *entity.OauthAccessToken) (*IntrospectResponse, error)
+	NewIntrospectResponseFromRefreshToken(refreshToken *entity.OauthRefreshToken) (*IntrospectResponse, error)
 	ClearUserTokens(userSession *session.UserSession)
 	Close()
 }

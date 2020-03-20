@@ -2,9 +2,9 @@ package oauth
 
 import (
 	"errors"
+	"go-echo-api/entity"
 	"sort"
 	"strings"
-	"go-echo-api/entity"
 )
 
 var (

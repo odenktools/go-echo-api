@@ -1,9 +1,9 @@
 package oauth
 
 import (
-	"net/http"
 	"go-echo-api/entity"
 	"go-echo-api/oauth/tokentypes"
+	"net/http"
 )
 
 func (s *Service) refreshTokenGrant(r *http.Request, client *entity.OauthClient) (*AccessTokenResponse, error) {

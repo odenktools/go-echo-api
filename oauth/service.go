@@ -1,9 +1,10 @@
 package oauth
 
 import (
+	"github.com/jinzhu/gorm"
+
 	"go-echo-api/config"
 	"go-echo-api/oauth/roles"
-	"github.com/jinzhu/gorm"
 )
 
 // Service struct keeps objects to avoid passing them around

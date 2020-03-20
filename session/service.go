@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 
-	"go-echo-api/config"
 	"github.com/gorilla/sessions"
+	"go-echo-api/config"
 )
 
 // Service wraps session functionality

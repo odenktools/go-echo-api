@@ -2,9 +2,9 @@ package oauth
 
 import (
 	"errors"
-	"net/http"
 	"go-echo-api/entity"
 	"go-echo-api/oauth/tokentypes"
+	"net/http"
 )
 
 const (
