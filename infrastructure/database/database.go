@@ -38,5 +38,10 @@ func GetLinkDb() *gorm.DB {
 func AutoMigrate(db *gorm.DB) {
 	db.AutoMigrate(
 		entity.User{},
+		entity.OauthRefreshToken{},
+		entity.OauthAccessToken{},
+		entity.OauthAuthorizationCode{},
+		entity.OauthClient{},
+		entity.OauthUser{},
 	)
 }
