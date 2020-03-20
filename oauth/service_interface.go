@@ -42,8 +42,8 @@ type ServiceInterface interface {
 	GetOrCreateRefreshToken(client *entity.OauthClient, user *entity.OauthUser, expiresIn int, scope string) (*entity.OauthRefreshToken, error)
 	GetValidRefreshToken(token string, client *entity.OauthClient) (*entity.OauthRefreshToken, error)
 	Authenticate(token string) (*entity.OauthAccessToken, error)
-	//NewIntrospectResponseFromAccessToken(accessToken *models.OauthAccessToken) (*IntrospectResponse, error)
-	//NewIntrospectResponseFromRefreshToken(refreshToken *models.OauthRefreshToken) (*IntrospectResponse, error)
+	NewIntrospectResponseFromAccessToken(accessToken *models.OauthAccessToken) (*IntrospectResponse, error)
+	NewIntrospectResponseFromRefreshToken(refreshToken *models.OauthRefreshToken) (*IntrospectResponse, error)
 	ClearUserTokens(userSession *session.UserSession)
 	Close()
 }

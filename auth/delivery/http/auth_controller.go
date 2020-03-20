@@ -49,7 +49,6 @@ func (c *authController) Login(ctx echo.Context) error {
 	}
 	return response.SingleData(ctx, utils.OK, echo.Map{"access_token": tokens, "refresh_token": refreshToken, "expire": expire},
 		nil)
-
 }
 
 func (c *authController) Register(ctx echo.Context) error {
