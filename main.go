@@ -55,12 +55,7 @@ func main() {
 	cnf := config.NewConfig(true, false, "consul")
 	//OauthService = oauth.NewService(cnf, db)
 
-	/*oauth := oauth.NewAuthController()
-	oAuthGrup := v1.Group("/oauth")
-	oAuthGrup.POST("/token", oauth.FindAll)*/
-
-
-	// start the services
+	// start oauth2 services
 	services.Init(cnf, db)
 	defer services.Close()
 
